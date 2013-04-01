@@ -1,4 +1,3 @@
-
 if has ("win32")
     let $HOME='D:/Vim'
     let g:tagbar_ctags_bin=$HOME.'/vim73/ctags.exe'
@@ -476,6 +475,7 @@ let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType c setlocal omnifunc=ccomplete#Complete
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
@@ -543,9 +543,10 @@ vnoremap < <gv
 vnoremap > >gv
 
 "NERDCommenter
-imap <c-b> <plug>NERDCommenterNested
 vmap <c-b> <plug>NERDCommenterNested
 nmap <c-b> <plug>NERDCommenterNested
+imap <c-b> <ESC><c-b>i
 imap <c-u> <plug>NERDCommenterUncomment
 vmap <c-u> <plug>NERDCommenterUncomment
 nmap <c-u> <plug>NERDCommenterUncomment
+imap <c-u> <ESC><c-u>i

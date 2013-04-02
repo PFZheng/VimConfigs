@@ -319,8 +319,7 @@ set grepprg=grep\ -nH\ $*
 
 "ctags
 set autochdir
-set tags=tags
-set tags+=./tags 
+set tags=tags;
 
 "taglist
 let Tlist_Show_One_File = 1 " Displaying tags for only one file~

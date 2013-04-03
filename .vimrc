@@ -167,7 +167,13 @@ endif
 " set guifont
 function s:SetGuiFont()
     if has("gui_gtk2")
-        if getfontname( "Droid Sans Mono" ) != ""
+        if getfontname( "Powerline\ Consolas" ) != ""
+            set guifont=Powerline\ Consolas\ 12
+            let font_name = "Powerline\ Consolas"
+        elseif getfontname( "Consolas" ) != ""
+            set guifont=Consolas\ 12
+            let font_name = "Consolas" 
+        elseif getfontname( "Droid Sans Mono" ) != ""
             set guifont=Droid\ Sans\ Mono\ 11
         else
             set guifont=Monospace\ 11

@@ -51,7 +51,7 @@ NeoBundle 'FencView.vim'
 "NeoBundle 'std_c.zip' " c highlight plugin
 "NeoBundle 'after/syntax/c.vim'
 NeoBundle 'highlight.vim'
-NeoBundle 'QFixToggle' " jump visiable window for quickfix
+"NeoBundle 'QFixToggle' " jump visiable window for quickfix
 NeoBundle 'cmdline-completion' " command auto-complete use c-p and c-n
 
 NeoBundle 'brookhong/cscope.vim'
@@ -163,18 +163,23 @@ if has("gui_running")
     set lines=35 columns=75
     au GUIEnter * call s:SetGuiFont() 
 endif
+
 " set guifont
 function s:SetGuiFont()
     if has("gui_gtk2")
-        set guifont=Luxi\ Mono\ 12
+        if getfontname( "Droid Sans Mono" ) != ""
+            set guifont=Droid\ Sans\ Mono\ 11
+        else
+            set guifont=Monospace\ 11
+        endif
     elseif has("x11")
         " Also for GTK 1
         set guifont=*-lucidatypewriter-medium-r-normal-*-*-180-*-*-m-*-*
     elseif has("mac")
         if getfontname( "Bitstream_Vera_Sans_Mono" ) != ""
-            set guifont=Bitstream\ Vera\ Sans\ Mono:h13
+            set guifont=Bitstream\ Vera\ Sans\ Mono:h11
         elseif getfontname( "DejaVu\ Sans\ Mono" ) != ""
-            set guifont=DejaVu\ Sans\ Mono:h13
+            set guifont=DejaVu\ Sans\ Mono:h11
         endif
     elseif has("gui_win32")
         let font_name = ""
@@ -231,7 +236,7 @@ set fileencodings=utf-8,chinese,latin-1
 if has("win32")
     set fileencoding=utf-8
 else
-    set fileencoding=utf-8,gbk,utf-16,big5
+    set fileencoding=utf-8
 endif
 
 "默认隐藏菜单和工具栏

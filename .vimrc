@@ -132,6 +132,7 @@ set ofu=syntaxcomplete#Complete
 syntax enable
 syntax on
 set cursorline " highlight current line
+set t_Co=256
 
 "tab mappings
 "map <C-1> 1gt
@@ -575,6 +576,20 @@ let g:ctrlp_root_markers = ['.ctrlp']
 " follow symbol links
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_extensions = ['funky','cmdline','menu']
-nnoremap <Space>fu :CtrlPFunky<Cr>
-" narrow the list down with a word under cursor
-nnoremap <Space>fU :execute 'CtrlPFunky '.expand('<cword>')<Cr>
+" keymap
+nnoremap <Space>p :CtrlP<Cr>
+nnoremap <Space>] :CtrlPTag<Cr>
+nnoremap <Space>t :CtrlPBufTag<Cr>
+nnoremap <Space>T :CtrlPBufTagAll<Cr>
+nnoremap <Space>q :CtrlPQuickfix<Cr>
+nnoremap <Space>d :CtrlPDir 
+nnoremap <Space>r :CtrlPRTS<Cr>
+nnoremap <Space>u :CtrlPUndo<Cr>
+nnoremap <Space>l :CtrlPLine<Cr>
+nnoremap <Space>c :CtrlPChange<Cr>
+nnoremap <Space>C :CtrlPChangeAll<Cr>
+nnoremap <Space>m :CtrlPMixed<Cr>
+nnoremap <Space>b :CtrlPBookmarkDir<Cr>
+nnoremap <Space>B :CtrlPBookmarkDirAdd 
+nnoremap <Space>f :CtrlPFunky<Cr>
+nnoremap <Space>F :execute 'CtrlPFunky '.expand('<cword>')<Cr>

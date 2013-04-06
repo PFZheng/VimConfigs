@@ -71,6 +71,10 @@ NeoBundle 'godlygeek/tabular' "align text
 NeoBundle 'tpope/vim-endwise' "complete certain structures automatically
 NeoBundle 'Raimondi/delimitMate' "automatic closing of quotes, parenthesis, brackets, etc.
 NeoBundle 'scrooloose/nerdcommenter' "comments
+" ctrlp extensions
+NeoBundle 'tacahiroy/ctrlp-funky' "function finding
+NeoBundle 'sgur/ctrlp-extensions.vim' "cmdline, yankring, menu history
+
 
 
 " some plugins only use in gui
@@ -238,7 +242,7 @@ au BufNewFile,BufRead *.tx1 setf tx1
 "编码
 set encoding=utf-8
 set termencoding=utf-8
-set fileencodings=utf-8,chinese,latin-1
+set fileencodings=utf-8,gbk,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 if has("win32")
     set fileencoding=utf-8
 else
@@ -560,3 +564,17 @@ imap <c-u> <plug>NERDCommenterUncomment
 vmap <c-u> <plug>NERDCommenterUncomment
 nmap <c-u> <plug>NERDCommenterUncomment
 imap <c-u> <ESC><c-u>i
+
+" CtrlP
+" let g:ctrlp_map = '<c-p>'
+" let g:ctrlp_cmd = 'CtrlP'
+" searching by filename, use <c-d> to switch between filename and full path
+let g:ctrlp_by_filename = 1
+" user defined root markers
+let g:ctrlp_root_markers = ['.ctrlp']
+" follow symbol links
+let g:ctrlp_follow_symlinks = 1
+let g:ctrlp_extensions = ['funky','cmdline','menu']
+nnoremap <Space>fu :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap <Space>fU :execute 'CtrlPFunky '.expand('<cword>')<Cr>

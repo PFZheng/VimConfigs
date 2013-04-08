@@ -74,6 +74,7 @@ NeoBundle 'scrooloose/nerdcommenter' "comments
 " ctrlp extensions
 NeoBundle 'tacahiroy/ctrlp-funky' "function finding
 NeoBundle 'sgur/ctrlp-extensions.vim' "cmdline, yankring, menu history
+NeoBundle 'acx0/Conque-Shell' " shell
 
 " some plugins only use in gui
 if has("gui_running")

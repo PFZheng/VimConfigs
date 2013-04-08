@@ -62,7 +62,7 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'majutsushi/tagbar'
-NeoBundle 'honza/snipmate-snippets'
+"NeoBundle 'honza/snipmate-snippets'
 NeoBundle 'magic-dot-files/TagHighlight' "tag highlight plugin
 NeoBundle 'altercation/vim-colors-solarized' "colorscheme
 NeoBundle 'tomasr/molokai' "colorscheme
@@ -74,8 +74,6 @@ NeoBundle 'scrooloose/nerdcommenter' "comments
 " ctrlp extensions
 NeoBundle 'tacahiroy/ctrlp-funky' "function finding
 NeoBundle 'sgur/ctrlp-extensions.vim' "cmdline, yankring, menu history
-
-
 
 " some plugins only use in gui
 if has("gui_running")
@@ -173,10 +171,8 @@ endif
 function s:SetGuiFont()
     if has("gui_gtk2")
         if getfontname( "Powerline\ Consolas" ) != ""
-            set guifont=Powerline\ Consolas\ 12
             let font_name = "Powerline\ Consolas"
         elseif getfontname( "Consolas" ) != ""
-            set guifont=Consolas\ 12
             let font_name = "Consolas" 
         elseif getfontname( "Droid Sans Mono" ) != ""
             set guifont=Droid\ Sans\ Mono\ 11
@@ -570,9 +566,10 @@ imap <c-u> <ESC><c-u>i
 " let g:ctrlp_map = '<c-p>'
 " let g:ctrlp_cmd = 'CtrlP'
 " searching by filename, use <c-d> to switch between filename and full path
-let g:ctrlp_by_filename = 1
+" let g:ctrlp_by_filename = 1
 " user defined root markers
 let g:ctrlp_root_markers = ['.ctrlp']
+let g:ctrlp_open_new_file = 'r'
 " follow symbol links
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_extensions = ['funky','cmdline','menu']

@@ -75,6 +75,7 @@ NeoBundle 'scrooloose/nerdcommenter' "comments
 NeoBundle 'tacahiroy/ctrlp-funky' "function finding
 NeoBundle 'sgur/ctrlp-extensions.vim' "cmdline, yankring, menu history
 NeoBundle 'acx0/Conque-Shell' " shell
+NeoBundle 'Lokaltog/vim-easymotion' " search and jump
 
 " some plugins only use in gui
 if has("gui_running")
@@ -441,7 +442,7 @@ let g:acp_enableAtStartup = 0
 let g:neocomplcache_disable_auto_complete = 1
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_enable_underbar_completion = 1 "支持下划线分割的关键词
-"let g:neocomplcache_enable_quick_match = 1
+let g:neocomplcache_enable_quick_match = 1
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 "let g:neocomplcache_ctags_program = "ctags"

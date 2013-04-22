@@ -1,0 +1,5 @@
+#!/bin/sh
+export GTK_IM_MODULE=xim
+export QT4_IM_MODULE=xim
+export XMODIFIERS=”@im=fcitx”
+exec gvim "$@"

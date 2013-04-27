@@ -43,7 +43,7 @@ NeoBundle 'lookupfile'
 NeoBundle 'SuperTab'
 NeoBundle 'taglist.vim'
 NeoBundle 'TxtBrowser'
-NeoBundle 'Visual-Mark'
+"NeoBundle 'Visual-Mark'
 NeoBundle 'pythoncomplete'
 NeoBundle 'Pydiction'
 NeoBundle 'unite.vim'
@@ -77,6 +77,7 @@ NeoBundle 'sgur/ctrlp-extensions.vim' "cmdline, yankring, menu history
 NeoBundle 'acx0/Conque-Shell' " shell
 NeoBundle 'Lokaltog/vim-easymotion' " search and jump
 NeoBundle 'skydark/fcitx.vim' " linux fcitx
+NeoBundle 'cnbirdfly/Visual-Mark' " fix for Linux Chinese
 
 " some plugins only use in gui
 if has("gui_running")

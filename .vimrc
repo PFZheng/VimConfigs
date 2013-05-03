@@ -78,6 +78,8 @@ NeoBundle 'acx0/Conque-Shell' " shell
 NeoBundle 'Lokaltog/vim-easymotion' " search and jump
 NeoBundle 'skydark/fcitx.vim' " linux fcitx
 NeoBundle 'cnbirdfly/Visual-Mark' " fix for Linux Chinese
+NeoBundle 'Shougo/vimfiler' " file explorer
+NeoBundle 'nathanaelkane/vim-indent-guides' " indent guide
 
 " some plugins only use in gui
 if has("gui_running")
@@ -594,3 +596,13 @@ nnoremap <Space>b :CtrlPBookmarkDir<Cr>
 nnoremap <Space>B :CtrlPBookmarkDirAdd 
 nnoremap <Space>f :CtrlPFunky<Cr>
 nnoremap <Space>F :execute 'CtrlPFunky '.expand('<cword>')<Cr>
+
+" VimFiler
+let g:vimfiler_as_default_explorer = 1
+
+" indent guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar']
+

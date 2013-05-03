@@ -1,0 +1,3 @@
+#!/bin/sh
+export GTK_IM_MODULE=xim
+exec gvim.old "$@"

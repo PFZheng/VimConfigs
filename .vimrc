@@ -13,11 +13,13 @@ if has ("win32")
         set runtimepath+=$HOME/vimfiles/bundle/neobundle.vim/
     endif
     call neobundle#rc(expand('$HOME/vimfiles/bundle/'))
+    let $CONFIG_DIR=$HOME.'/vimfiles/'
 else
     if has('vim_starting')
         set runtimepath+=$HOME/.vim/bundle/neobundle.vim/
     endif
     call neobundle#rc(expand('$HOME/.vim/bundle/'))
+    let $CONFIG_DIR=$HOME.'/.vim/'
 endif
 
 
@@ -45,7 +47,7 @@ NeoBundle 'taglist.vim'
 NeoBundle 'TxtBrowser'
 "NeoBundle 'Visual-Mark'
 NeoBundle 'pythoncomplete'
-NeoBundle 'Pydiction'
+"NeoBundle 'Pydiction'
 NeoBundle 'unite.vim'
 NeoBundle 'FencView.vim'
 "NeoBundle 'std_c.zip' " c highlight plugin
@@ -488,6 +490,12 @@ let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
+" Define dictionary.
+"let g:neocomplcache_dictionary_filetype_lists = {
+    "\ 'default' : '',
+    "\ 'python' : $HOME.'/.vimshell_hist',
+    "\ }
+
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -605,4 +613,7 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar']
+
+" pydict
+" let g:pydiction_location = $CONFIG_DIR.'/bundle/Pydiction/complete-dict'
 

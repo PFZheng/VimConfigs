@@ -50,6 +50,7 @@ NeoBundle 'pythoncomplete'
 "NeoBundle 'Pydiction'
 NeoBundle 'unite.vim'
 NeoBundle 'FencView.vim'
+NeoBundle 'LargeFile' " for large file
 "NeoBundle 'std_c.zip' " c highlight plugin
 "NeoBundle 'after/syntax/c.vim'
 NeoBundle 'highlight.vim'
@@ -617,3 +618,5 @@ let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar']
 " pydict
 " let g:pydiction_location = $CONFIG_DIR.'/bundle/Pydiction/complete-dict'
 
+" for largefile, 30MB
+let g:LargeFile = 30

@@ -42,6 +42,7 @@ NeoBundle 'c.vim'
 NeoBundle 'genutils'
 NeoBundle 'grep.vim'
 NeoBundle 'lookupfile'
+NeoBundle 'DrawIt'
 NeoBundle 'SuperTab'
 NeoBundle 'taglist.vim'
 NeoBundle 'TxtBrowser'
@@ -83,6 +84,7 @@ NeoBundle 'skydark/fcitx.vim' " linux fcitx
 NeoBundle 'cnbirdfly/Visual-Mark' " fix for Linux Chinese
 NeoBundle 'Shougo/vimfiler' " file explorer
 NeoBundle 'nathanaelkane/vim-indent-guides' " indent guide
+NeoBundle 'sjl/gundo.vim' " gundo
 
 " some plugins only use in gui
 if has("gui_running")
@@ -620,3 +622,9 @@ let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar']
 
 " for largefile, 30MB
 let g:LargeFile = 30
+
+" gundo
+nnoremap <F6> :GundoToggle<CR>
+"let g:gundo_width = 60
+"let g:gundo_preview_height = 40
+let g:gundo_right = 1

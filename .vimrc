@@ -294,12 +294,12 @@ if(has("gui_running"))
     noremap <C-S>		:update<CR>
     vnoremap <C-S>		<C-C>:update<CR>
     inoremap <C-S>		<C-O>:update<CR>
-    noremap <C-A> gggH<C-O>G
-    inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
-    cnoremap <C-A> <C-C>gggH<C-O>G
-    onoremap <C-A> <C-C>gggH<C-O>G
-    snoremap <C-A> <C-C>gggH<C-O>G
-    xnoremap <C-A> <C-C>ggVG
+    noremap <C-A> gggH<C-O>G<C-O>
+    inoremap <C-A> <C-O>gg<C-O>gH<C-O>G<C-O>
+    cnoremap <C-A> <C-C>gggH<C-O>G<C-O>
+    onoremap <C-A> <C-C>gggH<C-O>G<C-O>
+    snoremap <C-A> <C-C>gggH<C-O>G<C-O>
+    xnoremap <C-A> <C-C>ggVG<C-O>
 
     "处理consle输出乱码
     language messages zh_CN.utf-8

@@ -1,15 +1,15 @@
 if has ("win32")
     let $HOME='D:/Vim'
-    let g:tagbar_ctags_bin=$HOME.'/vim73/ctags.exe'
-    "let g:neocomplcache_ctags_program=$HOME.'/vim73/ctags.exe'
+    "let g:tagbar_ctags_bin=$HOME.'/vim/ctags.exe'
+    let g:neocomplcache_ctags_program=$VIMRUNTIME.'/ctags.exe'
     let g:tagbar_systemenc = 'GBK'
 endif
 
 "设置neobundle
-set nocompatible               " be iMproved
+set nocompatible " be iMproved
 
 if has ("win32")
-	if has('vim_starting')
+    if has('vim_starting')
         set runtimepath+=$HOME/vimfiles/bundle/neobundle.vim/
     endif
     call neobundle#rc(expand('$HOME/vimfiles/bundle/'))
@@ -22,9 +22,8 @@ else
     let $CONFIG_DIR=$HOME.'/.vim/'
 endif
 
-
 " let bundle manage bundle
-" required! 
+" required!
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 
@@ -42,16 +41,16 @@ NeoBundle 'c.vim'
 NeoBundle 'genutils'
 NeoBundle 'grep.vim'
 NeoBundle 'lookupfile'
+"NeoBundle 'SuperTab'
 NeoBundle 'DrawIt'
-NeoBundle 'SuperTab'
 NeoBundle 'taglist.vim'
 NeoBundle 'TxtBrowser'
 "NeoBundle 'Visual-Mark'
 NeoBundle 'pythoncomplete'
-"NeoBundle 'Pydiction'
+"NeoBundle 'rkulla/pydiction'
 NeoBundle 'unite.vim'
 NeoBundle 'FencView.vim'
-NeoBundle 'LargeFile' " for large file
+NeoBundle 'LargeFile'
 "NeoBundle 'std_c.zip' " c highlight plugin
 "NeoBundle 'after/syntax/c.vim'
 NeoBundle 'highlight.vim'
@@ -62,8 +61,10 @@ NeoBundle 'brookhong/cscope.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mbbill/echofunc'
 NeoBundle 'adah1972/tellenc'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
+"NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'majutsushi/tagbar'
 "NeoBundle 'honza/snipmate-snippets'
@@ -90,9 +91,10 @@ NeoBundle 'sjl/gundo.vim' " gundo
 if has("gui_running")
     NeoBundle 'minibufexpl.vim'
     NeoBundle 'Lokaltog/vim-powerline'
+    "NeoBundle 'bling/vim-airline'
 endif
 
-filetype plugin indent on     " required!
+filetype plugin indent on " required!
 
 " Installation check.
 NeoBundleCheck
@@ -170,12 +172,12 @@ set t_Co=256
 " ui
 " set default guifont
 if has("gui_running")
-    " check and determine the gui font after GUIEnter. 
-    " NOTE: getfontname function only works after GUIEnter.
-    "启动窗口设置
+" check and determine the gui font after GUIEnter.
+" NOTE: getfontname function only works after GUIEnter.
+"启动窗口设置
     winpos 200 100
     set lines=35 columns=75
-    au GUIEnter * call s:SetGuiFont() 
+    au GUIEnter * call s:SetGuiFont()
 endif
 
 " set guifont
@@ -184,14 +186,14 @@ function s:SetGuiFont()
         if getfontname( "Powerline\ Consolas" ) != ""
             let font_name = "Powerline\ Consolas"
         elseif getfontname( "Consolas" ) != ""
-            let font_name = "Consolas" 
+            let font_name = "Consolas"
         elseif getfontname( "Droid Sans Mono" ) != ""
             set guifont=Droid\ Sans\ Mono\ 11
         else
             set guifont=Monospace\ 11
         endif
     elseif has("x11")
-        " Also for GTK 1
+" Also for GTK 1
         set guifont=*-lucidatypewriter-medium-r-normal-*-*-180-*-*-m-*-*
     elseif has("mac")
         if getfontname( "Bitstream_Vera_Sans_Mono" ) != ""
@@ -202,19 +204,19 @@ function s:SetGuiFont()
     elseif has("gui_win32")
         let font_name = ""
 
-        " for powerline in windows
+" for powerline in windows
         if getfontname( "Powerline\ Consolas" ) != ""
             set guifont=Powerline\ Consolas:h11:cANSI
             let font_name = "Powerline\ Consolas"
         elseif getfontname( "Consolas" ) != ""
             set guifont=Consolas:h11:cANSI " this is the default visual studio font
-            let font_name = "Consolas" 
+            let font_name = "Consolas"
         elseif getfontname( "Bitstream_Vera_Sans_Mono" ) != ""
             set guifont=Bitstream_Vera_Sans_Mono:h11:cANSI
             let font_name = "Bitstream_Vera_Sans_Mono"
         else
             set guifont=Lucida_Console:h11:cANSI
-            let font_name = "Lucida_Console" 
+            let font_name = "Lucida_Console"
         endif
         silent exec "nnoremap <unique> <M-F1> :set guifont=".font_name.":h11:cANSI<CR>"
     endif
@@ -222,20 +224,20 @@ endfunction
 
 " color scheme define
 if has("gui_running")
-    " silent exec "colorscheme ex"
-    " silent exec "colorscheme evening"
+" silent exec "colorscheme ex"
+" silent exec "colorscheme evening"
     silent exec "colorscheme molokai"
-    " colorscheme solarized
-    "set background=dark
-    "let g:solarized_termcolors=256
-    "let g:solarized_contrast="high"
-    "let g:solarized_visibility="high"
-    "let g:solarized_custom="dark"
-    "silent exec "colorscheme solarized"
+" colorscheme solarized
+"set background=dark
+"let g:solarized_termcolors=256
+"let g:solarized_contrast="high"
+"let g:solarized_visibility="high"
+"let g:solarized_custom="dark"
+"silent exec "colorscheme solarized"
 else " if we are in terminal mode
-    " NOTE: you cannot use if has('mac') to detect platform in terminal mode.
+" NOTE: you cannot use if has('mac') to detect platform in terminal mode.
     silent exec "colorscheme delek"
-    " silent exec "colorscheme darkblue"
+" silent exec "colorscheme darkblue"
 endif
 
 "2006-09-13 如下：保存视图
@@ -259,41 +261,41 @@ endif
 
 "默认隐藏菜单和工具栏
 if(has("gui_running"))
-    "处理菜单及右键菜单乱码
+"处理菜单及右键菜单乱码
     source $VIMRUNTIME/delmenu.vim
     source $VIMRUNTIME/menu.vim
-    "source $VIMRUNTIME/mswin.vim
+"source $VIMRUNTIME/mswin.vim
     set guioptions-=m
     set guioptions-=T
     map <silent> <F9> :if &go=~#'m'<Bar>set go-=m<Bar>set go-=T<Bar>else<Bar>set go+=m<Bar>set go+=T<Bar>endif<CR>
 
-    " Use CTRL-S for saving, also in Insert mode
-    "noremap <C-S> :update<CR>
-    "vnoremap <C-S> :update<CR>
-    "inoremap <C-S> <C-O>:update<CR>
+" Use CTRL-S for saving, also in Insert mode
+"noremap <C-S> :update<CR>
+"vnoremap <C-S> :update<CR>
+"inoremap <C-S> <C-O>:update<CR>
 
-    "复制粘贴快捷键
-    "noremap <C-A> 1GvG$
-    "vnoremap <C-A> 1GvG$
-    "inoremap <C-A> <ESC>1GvG$
-    "noremap <C-C> "+y
-    "vnoremap <C-C> "+y
-    "inoremap <C-C> <ESC>"+y<ESC>
-    "noremap <C-V> "+P
-    "vnoremap <C-V> "+P
-    "inoremap <C-V> <ESC>"+Pi
-    "
+"复制粘贴快捷键
+"noremap <C-A> 1GvG$
+"vnoremap <C-A> 1GvG$
+"inoremap <C-A> <ESC>1GvG$
+"noremap <C-C> "+y
+"vnoremap <C-C> "+y
+"inoremap <C-C> <ESC>"+y<ESC>
+"noremap <C-V> "+P
+"vnoremap <C-V> "+P
+"inoremap <C-V> <ESC>"+Pi
+"
 
-    "从ms.vim里粘贴出的快捷键定义
+"从ms.vim里粘贴出的快捷键定义
     vnoremap <C-X> "+x
     vnoremap <C-C> "+y
     map <C-V> "+gP
     cmap <C-V> "+gP
     exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
     exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
-    noremap <C-S>		:update<CR>
-    vnoremap <C-S>		<C-C>:update<CR>
-    inoremap <C-S>		<C-O>:update<CR>
+    noremap <C-S>	:update<CR>
+    vnoremap <C-S>	<C-C>:update<CR>
+    inoremap <C-S>	<C-O>:update<CR>
     noremap <C-A> gggH<C-O>G<C-O>
     inoremap <C-A> <C-O>gg<C-O>gH<C-O>G<C-O>
     cnoremap <C-A> <C-C>gggH<C-O>G<C-O>
@@ -301,7 +303,7 @@ if(has("gui_running"))
     snoremap <C-A> <C-C>gggH<C-O>G<C-O>
     xnoremap <C-A> <C-C>ggVG<C-O>
 
-    "处理consle输出乱码
+"处理consle输出乱码
     language messages zh_CN.utf-8
 endif
 
@@ -346,8 +348,8 @@ set tags=tags;
 
 "taglist
 let Tlist_Show_One_File = 1 " Displaying tags for only one file~
-let Tlist_Exist_OnlyWindow = 1 " if you are the last, kill yourself 
-"let Tlist_Use_Right_Window = 1 " split to the right side of the screen 
+let Tlist_Exist_OnlyWindow = 1 " if you are the last, kill yourself
+"let Tlist_Use_Right_Window = 1 " split to the right side of the screen
 let Tlist_Sort_Type = "order" " sort by order or name
 let Tlist_Display_Prototype = 0 " do not show prototypes and not tags in the taglist window.
 let Tlist_Compart_Format = 1 " Remove extra information and blank lines from the taglist window.
@@ -432,11 +434,11 @@ au BufRead,BufNewFile *.log setlocal ft=txt
 """"""""""""""""""""""""""""""
 " lookupfile setting
 """"""""""""""""""""""""""""""
-"let g:LookupFile_MinPatLength = 2               "最少输入2个字符才开始查找
-"let g:LookupFile_PreserveLastPattern = 0        "不保存上次查找的字符串
-"let g:LookupFile_PreservePatternHistory = 1     "保存查找历史
-"let g:LookupFile_AlwaysAcceptFirst = 1          "回车打开第一个匹配项目
-"let g:LookupFile_AllowNewFiles = 0              "不允许创建不存在的文件
+"let g:LookupFile_MinPatLength = 2 "最少输入2个字符才开始查找
+"let g:LookupFile_PreserveLastPattern = 0 "不保存上次查找的字符串
+"let g:LookupFile_PreservePatternHistory = 1 "保存查找历史
+"let g:LookupFile_AlwaysAcceptFirst = 1 "回车打开第一个匹配项目
+"let g:LookupFile_AllowNewFiles = 0 "不允许创建不存在的文件
 "映射LookupFile为,lk
 "nmap <silent> lk :LUTags<cr>
 "映射LUBufs为,ll
@@ -444,69 +446,100 @@ au BufRead,BufNewFile *.log setlocal ft=txt
 "映射LUWalk为,lw
 "nmap <silent> lw :LUWalk<cr>
 
-"补齐插件
-"neocomplcache
-let g:neocomplcache_enable_at_startup = 1
+
+
+" NeoComplete
+" Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
-let g:neocomplcache_disable_auto_complete = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_underbar_completion = 1 "支持下划线分割的关键词
-let g:neocomplcache_enable_quick_match = 1
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-"let g:neocomplcache_ctags_program = "ctags"
-let g:neocomplcache_force_overwrite_completefunc = 1
-
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
-"supertab 
-let g:SuperTabDefaultCompletionType = '<C-X><C-U>' "SuperTab调用
-"let g:SuperTabDefaultCompletionType = "context"
-"let g:SuperTabRetainCompletionType=2
-
-" Neosnippet
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-" Tell Neosnippet about the other snippets
-" let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
-if has ("win32")
-    let g:neosnippet#snippets_directory=$HOME.'/vimfiles/bundle/snipmate-snippets/snippets'
-else
-    let g:neosnippet#snippets_directory=$HOME.'/.vim/bundle/snipmate-snippets/snippets'
-endif
-
-"imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-"smap <C-k>     <Plug>(neocomplcache_snippets_expand)
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
-" omni patterns
-if !exists('g:neocomplcache_omni_patterns')
-    let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Disable auto complete
+let g:neocomplete#disable_auto_complete = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#manual_completion_start_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.
-"let g:neocomplcache_dictionary_filetype_lists = {
-    "\ 'default' : '',
-    "\ 'python' : $HOME.'/.vimshell_hist',
-    "\ }
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ neocomplete#start_manual_complete()
+function! s:check_back_space() "{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+
+" For cursor moving in insert mode(Not recommended)
+"inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
+"inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
+"inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
+"inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
+" Or set this.
+"let g:neocomplete#enable_cursor_hold_i = 1
+" Or set this.
+"let g:neocomplete#enable_insert_char_pre = 1
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType c setlocal omnifunc=ccomplete#Complete
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 " tagbar
 let g:tagbar_left = 1
@@ -514,7 +547,7 @@ let g:tagbar_width = 35
 let g:tagbar_autoclose = 0
 let g:tagbar_autofocus = 0
 let g:tagbar_singleclick = 0
-nmap <F8> :TagbarToggle<CR> 
+nmap <F8> :TagbarToggle<CR>
 
 " split buffer windows
 nmap ws :split<cr>
@@ -529,10 +562,24 @@ nmap <silent> <A-Right> :wincmd l<CR>
 
 " powerline
 set laststatus=2
-"set t_Co=256 
-"let g:Powerline_symbols = 'unicode' 
+"set t_Co=256
+"let g:Powerline_symbols = 'unicode'
 
-"MiniBufExplorer
+" vim-airline
+"set laststatus=2
+"let g:airline_theme             = 'molokai'
+"let g:airline_enable_branch     = 1
+"let g:airline_enable_syntastic  = 1
+"" vim-powerline like symbols
+"let g:airline_left_sep          = '⮀'
+"let g:airline_left_alt_sep      = '⮁'
+"let g:airline_right_sep         = '⮂'
+"let g:airline_right_alt_sep     = '⮃'
+"let g:airline_branch_prefix     = '⭠'
+"let g:airline_readonly_symbol   = '⭤'
+"let g:airline_linecolumn_prefix = '⭡'
+
+""MiniBufExplorer
 let g:miniBufExplorerMoreThanOne = 0
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplMapWindowNavVim = 1
@@ -550,8 +597,8 @@ let g:miniBufExplMapWindowNavArrows = 1
 "let c_syntax_for_h = 1
 
 " open vimgrep, search in current file, and store in quickfix windows
-map ,r :vimgrep /\<<c-r><c-w>\>/j 
-map ,R "ay:vimgrep /\<<c-r>a\>/j 
+map ,r :vimgrep /\<<c-r><c-w>\>/j
+map ,R "ay:vimgrep /\<<c-r>a\>/j
   
 function! QFixToggle(force)
     if exists("g:qfix_win")
@@ -596,7 +643,7 @@ nnoremap <Space>] :CtrlPTag<Cr>
 nnoremap <Space>t :CtrlPBufTag<Cr>
 nnoremap <Space>T :CtrlPBufTagAll<Cr>
 nnoremap <Space>q :CtrlPQuickfix<Cr>
-nnoremap <Space>d :CtrlPDir 
+nnoremap <Space>d :CtrlPDir
 nnoremap <Space>r :CtrlPRTS<Cr>
 nnoremap <Space>u :CtrlPUndo<Cr>
 nnoremap <Space>l :CtrlPLine<Cr>
@@ -604,7 +651,7 @@ nnoremap <Space>c :CtrlPChange<Cr>
 nnoremap <Space>C :CtrlPChangeAll<Cr>
 nnoremap <Space>m :CtrlPMixed<Cr>
 nnoremap <Space>b :CtrlPBookmarkDir<Cr>
-nnoremap <Space>B :CtrlPBookmarkDirAdd 
+nnoremap <Space>B :CtrlPBookmarkDirAdd
 nnoremap <Space>f :CtrlPFunky<Cr>
 nnoremap <Space>F :execute 'CtrlPFunky '.expand('<cword>')<Cr>
 
@@ -620,7 +667,7 @@ let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar']
 " pydict
 " let g:pydiction_location = $CONFIG_DIR.'/bundle/Pydiction/complete-dict'
 
-" for largefile, 30MB
+" largefile
 let g:LargeFile = 30
 
 " gundo

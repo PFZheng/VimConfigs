@@ -90,8 +90,8 @@ NeoBundle 'sjl/gundo.vim' " gundo
 " some plugins only use in gui
 if has("gui_running")
     NeoBundle 'minibufexpl.vim'
-    NeoBundle 'Lokaltog/vim-powerline'
-    "NeoBundle 'bling/vim-airline'
+    "NeoBundle 'Lokaltog/vim-powerline'
+    NeoBundle 'bling/vim-airline'
 endif
 
 filetype plugin indent on " required!
@@ -561,23 +561,32 @@ nmap <silent> <A-Left> :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
 
 " powerline
-set laststatus=2
+"set laststatus=2
 "set t_Co=256
 "let g:Powerline_symbols = 'unicode'
 
 " vim-airline
-"set laststatus=2
-"let g:airline_theme             = 'molokai'
-"let g:airline_enable_branch     = 1
-"let g:airline_enable_syntastic  = 1
-"" vim-powerline like symbols
-"let g:airline_left_sep          = '⮀'
-"let g:airline_left_alt_sep      = '⮁'
-"let g:airline_right_sep         = '⮂'
-"let g:airline_right_alt_sep     = '⮃'
-"let g:airline_branch_prefix     = '⭠'
-"let g:airline_readonly_symbol   = '⭤'
-"let g:airline_linecolumn_prefix = '⭡'
+set laststatus=2
+let g:airline_theme             = 'molokai'
+let g:airline_enable_branch     = 1
+let g:airline_enable_syntastic  = 0
+" vim-powerline like symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_branch_prefix     = '⭠'
+let g:airline_readonly_symbol   = '⭤'
+let g:airline_linecolumn_prefix = '⭡'
+"let g:airline_mode_map = {
+  "\ '__' : '',
+  "\ }
+let g:airline_exclude_filenames = ['-MiniBufExplorer-','__Tagbar__']
+let g:airline#extensions#tagbar#enabled = 0
+let g:airline#extensions#default#layout = [
+  \ [ 'a', 'b', 'c' ],
+  \ [ 'x', 'y', 'z']
+  \ ]
 
 ""MiniBufExplorer
 let g:miniBufExplorerMoreThanOne = 0
@@ -599,7 +608,7 @@ let g:miniBufExplMapWindowNavArrows = 1
 " open vimgrep, search in current file, and store in quickfix windows
 map ,r :vimgrep /\<<c-r><c-w>\>/j
 map ,R "ay:vimgrep /\<<c-r>a\>/j
-  
+ 
 function! QFixToggle(force)
     if exists("g:qfix_win")
         cclose

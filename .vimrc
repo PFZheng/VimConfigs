@@ -1,5 +1,5 @@
 if has ("win32")
-    let $HOME='D:/Vim'
+    let $HOME=$VIMRUNTIME.'/../'
     "let g:tagbar_ctags_bin=$HOME.'/vim/ctags.exe'
     let g:neocomplcache_ctags_program=$VIMRUNTIME.'/ctags.exe'
     let g:tagbar_systemenc = 'GBK'
@@ -90,8 +90,8 @@ NeoBundle 'sjl/gundo.vim' " gundo
 " some plugins only use in gui
 if has("gui_running")
     NeoBundle 'minibufexpl.vim'
-    "NeoBundle 'Lokaltog/vim-powerline'
-    NeoBundle 'bling/vim-airline'
+    NeoBundle 'Lokaltog/vim-powerline'
+    "NeoBundle 'bling/vim-airline'
 endif
 
 filetype plugin indent on " required!
@@ -343,7 +343,7 @@ let g:tex_flavor='latex'
 set grepprg=grep\ -nH\ $*
 
 "ctags
-set autochdir
+"set autochdir
 set tags=tags;
 
 "taglist
@@ -561,32 +561,32 @@ nmap <silent> <A-Left> :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
 
 " powerline
-"set laststatus=2
-"set t_Co=256
-"let g:Powerline_symbols = 'unicode'
-
-" vim-airline
 set laststatus=2
-let g:airline_theme             = 'molokai'
-let g:airline_enable_branch     = 1
-let g:airline_enable_syntastic  = 0
-" vim-powerline like symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_branch_prefix     = '⭠'
-let g:airline_readonly_symbol   = '⭤'
-let g:airline_linecolumn_prefix = '⭡'
-"let g:airline_mode_map = {
-  "\ '__' : '',
-  "\ }
-let g:airline_exclude_filenames = ['-MiniBufExplorer-','__Tagbar__']
-let g:airline#extensions#tagbar#enabled = 0
-let g:airline#extensions#default#layout = [
-  \ [ 'a', 'b', 'c' ],
-  \ [ 'x', 'y', 'z']
-  \ ]
+set t_Co=256
+let g:Powerline_symbols = 'unicode'
+
+"" vim-airline
+"set laststatus=2
+"let g:airline_theme             = 'molokai'
+"let g:airline_enable_branch     = 1
+"let g:airline_enable_syntastic  = 0
+"" vim-powerline like symbols
+"let g:airline_left_sep = '»'
+"let g:airline_left_sep = '▶'
+"let g:airline_right_sep = '«'
+"let g:airline_right_sep = '◀'
+"let g:airline_branch_prefix     = '⭠'
+"let g:airline_readonly_symbol   = '⭤'
+"let g:airline_linecolumn_prefix = '⭡'
+""let g:airline_mode_map = {
+  ""\ '__' : '',
+  ""\ }
+"let g:airline_exclude_filenames = ['-MiniBufExplorer-','__Tagbar__']
+"let g:airline#extensions#tagbar#enabled = 0
+"let g:airline#extensions#default#layout = [
+  "\ [ 'a', 'b', 'c' ],
+  "\ [ 'x', 'y', 'z']
+  "\ ]
 
 ""MiniBufExplorer
 let g:miniBufExplorerMoreThanOne = 0

@@ -456,7 +456,7 @@ let g:neocomplete#enable_at_startup = 1
 " Disable auto complete
 let g:neocomplete#disable_auto_complete = 1
 " Use smartcase.
-let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#enable_smart_case = 0
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#manual_completion_start_length = 3
@@ -666,6 +666,11 @@ nnoremap <Space>F :execute 'CtrlPFunky '.expand('<cword>')<Cr>
 
 " VimFiler
 let g:vimfiler_as_default_explorer = 1
+
+" syntastic
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'active_filetypes': ['python', 'ruby', 'php'],
+                           \ 'passive_filetypes': ['cpp'] }
 
 " indent guides
 let g:indent_guides_enable_on_vim_startup = 1

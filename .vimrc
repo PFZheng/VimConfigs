@@ -1,6 +1,6 @@
 if has ("win32")
     let $HOME=$VIMRUNTIME.'/../'
-    "let g:tagbar_ctags_bin=$HOME.'/vim/ctags.exe'
+"let g:tagbar_ctags_bin=$HOME.'/vim/ctags.exe'
     let g:neocomplcache_ctags_program=$VIMRUNTIME.'/ctags.exe'
     let g:tagbar_systemenc = 'GBK'
 endif
@@ -91,7 +91,7 @@ NeoBundle 'sjl/gundo.vim' " gundo
 if has("gui_running")
     NeoBundle 'minibufexpl.vim'
     NeoBundle 'Lokaltog/vim-powerline'
-    "NeoBundle 'bling/vim-airline'
+"NeoBundle 'bling/vim-airline'
 endif
 
 filetype plugin indent on " required!
@@ -293,9 +293,9 @@ if(has("gui_running"))
     cmap <C-V> "+gP
     exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
     exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
-    noremap <C-S>	:update<CR>
-    vnoremap <C-S>	<C-C>:update<CR>
-    inoremap <C-S>	<C-O>:update<CR>
+    noremap <C-S>        :update<CR>
+    vnoremap <C-S>        <C-C>:update<CR>
+    inoremap <C-S>        <C-O>:update<CR>
     noremap <C-A> gggH<C-O>G<C-O>
     inoremap <C-A> <C-O>gg<C-O>gH<C-O>G<C-O>
     cnoremap <C-A> <C-C>gggH<C-O>G<C-O>
@@ -476,38 +476,38 @@ endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
 " Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
+inoremap <expr><C-g> neocomplete#undo_completion()
+inoremap <expr><C-l> neocomplete#complete_common_string()
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
   return neocomplete#close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+" For no inserting <CR> key.
+"return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
 " <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" :
         \ <SID>check_back_space() ? "\<TAB>" :
         \ neocomplete#start_manual_complete()
 function! s:check_back_space() "{{{
     let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
+    return !col || getline('.')[col - 1] =~ '\s'
 endfunction"}}}
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
+inoremap <expr><C-y> neocomplete#close_popup()
+inoremap <expr><C-e> neocomplete#cancel_popup()
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
 " For cursor moving in insert mode(Not recommended)
-"inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
+"inoremap <expr><Left> neocomplete#close_popup() . "\<Left>"
 "inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
-"inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
-"inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
+"inoremap <expr><Up> neocomplete#close_popup() . "\<Up>"
+"inoremap <expr><Down> neocomplete#close_popup() . "\<Down>"
 " Or set this.
 "let g:neocomplete#enable_cursor_hold_i = 1
 " Or set this.
@@ -520,7 +520,7 @@ inoremap <expr><C-e>  neocomplete#cancel_popup()
 "set completeopt+=longest
 "let g:neocomplete#enable_auto_select = 1
 "let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+"inoremap <expr><TAB> pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -563,30 +563,40 @@ nmap <silent> <A-Right> :wincmd l<CR>
 " powerline
 set laststatus=2
 set t_Co=256
-let g:Powerline_symbols = 'unicode'
+"let g:Powerline_symbols = 'unicode'
+let g:Powerline_dividers_override = ['', '>', '', '<']
+let g:Powerline_symbols_override = {
+    \ 'BRANCH': '⭠',
+    \ 'LINE': '⭡',
+    \ 'RO' : '⭤',
+    \ }
+let g:Powerline_mode_V = 'V·LINE'
+let g:Powerline_mode_cv = 'V·BLOCK'
+let g:Powerline_mode_S = 'S·LINE'
+let g:Powerline_mode_cs = 'S·BLOCK'
 
 "" vim-airline
 "set laststatus=2
-"let g:airline_theme             = 'molokai'
-"let g:airline_enable_branch     = 1
-"let g:airline_enable_syntastic  = 0
+"let g:airline_theme = 'molokai'
+"let g:airline_enable_branch = 1
+"let g:airline_enable_syntastic = 0
 "" vim-powerline like symbols
 "let g:airline_left_sep = '»'
 "let g:airline_left_sep = '▶'
 "let g:airline_right_sep = '«'
 "let g:airline_right_sep = '◀'
-"let g:airline_branch_prefix     = '⭠'
-"let g:airline_readonly_symbol   = '⭤'
+"let g:airline_branch_prefix = '⭠'
+"let g:airline_readonly_symbol = '⭤'
 "let g:airline_linecolumn_prefix = '⭡'
 ""let g:airline_mode_map = {
-  ""\ '__' : '',
-  ""\ }
+""\ '__' : '',
+""\ }
 "let g:airline_exclude_filenames = ['-MiniBufExplorer-','__Tagbar__']
 "let g:airline#extensions#tagbar#enabled = 0
 "let g:airline#extensions#default#layout = [
-  "\ [ 'a', 'b', 'c' ],
-  "\ [ 'x', 'y', 'z']
-  "\ ]
+"\ [ 'a', 'b', 'c' ],
+"\ [ 'x', 'y', 'z']
+"\ ]
 
 ""MiniBufExplorer
 let g:miniBufExplorerMoreThanOne = 0

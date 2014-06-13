@@ -82,7 +82,7 @@ NeoBundle 'sgur/ctrlp-extensions.vim' "cmdline, yankring, menu history
 NeoBundle 'acx0/Conque-Shell' " shell
 NeoBundle 'Lokaltog/vim-easymotion' " search and jump
 NeoBundle 'skydark/fcitx.vim' " linux fcitx
-NeoBundle 'cnbirdfly/Visual-Mark' " fix for Linux Chinese
+NeoBundle 'PFZheng/Visual-Mark' " fix for Linux Chinese
 NeoBundle 'Shougo/vimfiler' " file explorer
 NeoBundle 'nathanaelkane/vim-indent-guides' " indent guide
 NeoBundle 'sjl/gundo.vim' " gundo

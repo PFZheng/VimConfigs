@@ -1,6 +1,6 @@
 if has ("win32")
     let $HOME=$VIMRUNTIME.'/../'
-"let g:tagbar_ctags_bin=$HOME.'/vim/ctags.exe'
+    "let g:tagbar_ctags_bin=$HOME.'/vim/ctags.exe'
     let g:neocomplcache_ctags_program=$VIMRUNTIME.'/ctags.exe'
     let g:tagbar_systemenc = 'GBK'
 endif
@@ -86,12 +86,24 @@ NeoBundle 'PFZheng/Visual-Mark' " fix for Linux Chinese
 NeoBundle 'Shougo/vimfiler' " file explorer
 NeoBundle 'nathanaelkane/vim-indent-guides' " indent guide
 NeoBundle 'sjl/gundo.vim' " gundo
+NeoBundle 'michalliu/jsruntime.vim' " js runtime
+NeoBundle 'michalliu/jsoncodecs.vim' " json
+NeoBundle 'elzr/vim-json' " json synatic
+NeoBundle 'michalliu/sourcebeautify.vim' " html source beautify
+NeoBundle 'tpope/vim-surround'
+NeoBundle "mattn/emmet-vim"
+NeoBundle 'maksimr/vim-jsbeautify'
+NeoBundle 'einars/js-beautify'
 
 " some plugins only use in gui
 if has("gui_running")
     NeoBundle 'minibufexpl.vim'
     NeoBundle 'Lokaltog/vim-powerline'
-"NeoBundle 'bling/vim-airline'
+    "NeoBundle 'bling/vim-airline'
+endif
+
+if has("mac")
+    NeoBundle 'msanders/cocoa.vim'
 endif
 
 filetype plugin indent on " required!
@@ -172,11 +184,14 @@ set t_Co=256
 " ui
 " set default guifont
 if has("gui_running")
-" check and determine the gui font after GUIEnter.
-" NOTE: getfontname function only works after GUIEnter.
-"启动窗口设置
+    " check and determine the gui font after GUIEnter.
+    " NOTE: getfontname function only works after GUIEnter.
     winpos 200 100
-    set lines=35 columns=75
+    if has("gui_macvim")
+        set lines=40 columns=90
+    else
+        set lines=35 columns=75
+    endif
     au GUIEnter * call s:SetGuiFont()
 endif
 
@@ -193,18 +208,17 @@ function s:SetGuiFont()
             set guifont=Monospace\ 11
         endif
     elseif has("x11")
-" Also for GTK 1
+    " Also for GTK 1
         set guifont=*-lucidatypewriter-medium-r-normal-*-*-180-*-*-m-*-*
-    elseif has("mac")
-        if getfontname( "Bitstream_Vera_Sans_Mono" ) != ""
-            set guifont=Bitstream\ Vera\ Sans\ Mono:h11
-        elseif getfontname( "DejaVu\ Sans\ Mono" ) != ""
-            set guifont=DejaVu\ Sans\ Mono:h11
+    elseif has("gui_macvim")
+        if getfontname( "Monaco" ) != ""
+            set guifont=Monaco:h12
+        elseif getfontname( "Consolas" ) != ""
+            set guifont=Consolas:h12
         endif
     elseif has("gui_win32")
         let font_name = ""
-
-" for powerline in windows
+        " for powerline in windows
         if getfontname( "Powerline\ Consolas" ) != ""
             set guifont=Powerline\ Consolas:h11:cANSI
             let font_name = "Powerline\ Consolas"
@@ -287,21 +301,22 @@ if(has("gui_running"))
 "
 
 "从ms.vim里粘贴出的快捷键定义
-    vnoremap <C-X> "+x
-    vnoremap <C-C> "+y
-    map <C-V> "+gP
-    cmap <C-V> "+gP
-    exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
-    exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
-    noremap <C-S>        :update<CR>
-    vnoremap <C-S>        <C-C>:update<CR>
-    inoremap <C-S>        <C-O>:update<CR>
-    noremap <C-A> gggH<C-O>G<C-O>
-    inoremap <C-A> <C-O>gg<C-O>gH<C-O>G<C-O>
-    cnoremap <C-A> <C-C>gggH<C-O>G<C-O>
-    onoremap <C-A> <C-C>gggH<C-O>G<C-O>
-    snoremap <C-A> <C-C>gggH<C-O>G<C-O>
-    xnoremap <C-A> <C-C>ggVG<C-O>
+"    vnoremap <C-X> "+x
+    "vnoremap <C-C> "+y
+    "map <C-V> "+gP
+    "cmap <C-V> "+gP
+    "exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
+    "exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
+    "noremap <C-S>        :update<CR>
+    "vnoremap <C-S>        <C-C>:update<CR>
+    "inoremap <C-S>        <C-O>:update<CR>
+    "noremap <C-A> gggH<C-O>G<C-O>
+    "inoremap <C-A> <C-O>gg<C-O>gH<C-O>G<C-O>
+    "cnoremap <C-A> <C-C>gggH<C-O>G<C-O>
+    "onoremap <C-A> <C-C>gggH<C-O>G<C-O>
+    "snoremap <C-A> <C-C>gggH<C-O>G<C-O>
+    "xnoremap <C-A> <C-C>ggVG<C-O>
+    source $VIMRUNTIME/mswin.vim 
 
 "处理consle输出乱码
     language messages zh_CN.utf-8
@@ -633,8 +648,6 @@ endfunction
 nmap <silent> <F4> :call QFixToggle(0)<CR>
 
 " 连续的进行visual模式移动
-vnoremap < <gv
-vnoremap > >gv
 
 "NERDCommenter
 vmap <c-b> <plug>NERDCommenterNested
@@ -699,3 +712,35 @@ nnoremap <F6> :GundoToggle<CR>
 "let g:gundo_width = 60
 "let g:gundo_preview_height = 40
 let g:gundo_right = 1
+
+" js beautifier
+map <c-l> :call JsBeautify()<cr>
+
+" tagbar
+if (has("mac"))
+    let g:tagbar_type_objc = {
+      \ 'ctagstype': 'objc',
+      \ 'ctagsargs': [
+        \ '-f',
+        \ '-',
+        \ '--excmd=pattern',
+        \ '--extra=',
+        \ '--format=2',
+        \ '--fields=nksaSmt',
+        \ '--options=' . expand('~/.objctags'),
+        \ '--objc-kinds=-N',
+      \ ],
+      \ 'sro': ' ',
+      \ 'kinds': [
+        \ 'c:constant',
+        \ 'e:enum',
+        \ 't:typedef',
+        \ 'i:interface',
+        \ 'P:protocol',
+        \ 'p:property',
+        \ 'I:implementation',
+        \ 'M:method',
+        \ 'g:pragma',
+      \ ],
+    \ }
+endif

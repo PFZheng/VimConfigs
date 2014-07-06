@@ -94,16 +94,18 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle "mattn/emmet-vim"
 NeoBundle 'maksimr/vim-jsbeautify'
 NeoBundle 'einars/js-beautify'
+NeoBundle 'ctrlsf.vim'
 
 " some plugins only use in gui
 if has("gui_running")
     NeoBundle 'minibufexpl.vim'
-    NeoBundle 'Lokaltog/vim-powerline'
-    "NeoBundle 'bling/vim-airline'
+    "NeoBundle 'Lokaltog/vim-powerline'
+    NeoBundle 'bling/vim-airline'
 endif
 
 if has("mac")
     NeoBundle 'msanders/cocoa.vim'
+    NeoBundle 'rizzatti/dash.vim'
 endif
 
 filetype plugin indent on " required!
@@ -358,8 +360,8 @@ let g:tex_flavor='latex'
 set grepprg=grep\ -nH\ $*
 
 "ctags
-"set autochdir
-set tags=tags;
+set autochdir
+set tags=tags,./tags
 
 "taglist
 let Tlist_Show_One_File = 1 " Displaying tags for only one file~
@@ -591,27 +593,28 @@ let g:Powerline_mode_S = 'S·LINE'
 let g:Powerline_mode_cs = 'S·BLOCK'
 
 "" vim-airline
-"set laststatus=2
-"let g:airline_theme = 'molokai'
-"let g:airline_enable_branch = 1
-"let g:airline_enable_syntastic = 0
-"" vim-powerline like symbols
-"let g:airline_left_sep = '»'
-"let g:airline_left_sep = '▶'
-"let g:airline_right_sep = '«'
-"let g:airline_right_sep = '◀'
-"let g:airline_branch_prefix = '⭠'
-"let g:airline_readonly_symbol = '⭤'
-"let g:airline_linecolumn_prefix = '⭡'
-""let g:airline_mode_map = {
-""\ '__' : '',
-""\ }
-"let g:airline_exclude_filenames = ['-MiniBufExplorer-','__Tagbar__']
-"let g:airline#extensions#tagbar#enabled = 0
-"let g:airline#extensions#default#layout = [
-"\ [ 'a', 'b', 'c' ],
-"\ [ 'x', 'y', 'z']
-"\ ]
+set laststatus=2
+let g:airline_theme = 'molokai'
+let g:airline_enable_branch = 1
+let g:airline_enable_syntastic = 0
+let g:airline_powerline_fonts = 0
+" vim-powerline like symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = ''
+let g:airline_right_sep = '«'
+let g:airline_right_sep = ''
+let g:airline_branch_prefix = 'B'
+let g:airline_readonly_symbol = 'R'
+let g:airline_linecolumn_prefix = 'LN'
+"let g:airline_mode_map = {
+"\ '__' : '',
+"\ }
+let g:airline_exclude_filenames = ['-MiniBufExplorer-','__Tagbar__']
+let g:airline#extensions#tagbar#enabled = 0
+let g:airline#extensions#default#layout = [
+\ [ 'a', 'b', 'c' ],
+\ [ 'x', 'y', 'z']
+\ ]
 
 ""MiniBufExplorer
 let g:miniBufExplorerMoreThanOne = 0
@@ -633,6 +636,7 @@ let g:miniBufExplMapWindowNavArrows = 1
 " open vimgrep, search in current file, and store in quickfix windows
 map ,r :vimgrep /\<<c-r><c-w>\>/j
 map ,R "ay:vimgrep /\<<c-r>a\>/j
+let Grep_Skip_Files = '*.bak *.swp tags' 
  
 function! QFixToggle(force)
     if exists("g:qfix_win")
@@ -666,6 +670,7 @@ imap <c-u> <ESC><c-u>i
 " user defined root markers
 let g:ctrlp_root_markers = ['.ctrlp']
 let g:ctrlp_open_new_file = 'r'
+let g:ctrlp_regexp = 1
 " follow symbol links
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_extensions = ['funky','cmdline','menu']
@@ -715,6 +720,12 @@ let g:gundo_right = 1
 
 " js beautifier
 map <c-l> :call JsBeautify()<cr>
+" or
+autocmd FileType javascript noremap <buffer>  <c-l> :call JsBeautify()<cr>
+" for html
+autocmd FileType html noremap <buffer> <c-l> :call HtmlBeautify()<cr>
+" for css or scss
+autocmd FileType css noremap <buffer> <c-l> :call CSSBeautify()<cr>
 
 " tagbar
 if (has("mac"))

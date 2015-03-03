@@ -40,7 +40,7 @@ NeoBundle 'c.vim'
 "NeoBundle 'comments.vim'
 NeoBundle 'genutils'
 NeoBundle 'grep.vim'
-NeoBundle 'lookupfile'
+"NeoBundle 'lookupfile'
 "NeoBundle 'SuperTab'
 NeoBundle 'DrawIt'
 NeoBundle 'taglist.vim'
@@ -63,14 +63,21 @@ NeoBundle 'mbbill/echofunc'
 NeoBundle 'adah1972/tellenc'
 "NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/neosnippet.vim'
+
+"complete plugins
+"NeoBundle 'Shougo/neocomplete.vim'
+"NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'honza/vim-snippets'
+
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'majutsushi/tagbar'
 "NeoBundle 'honza/snipmate-snippets'
 NeoBundle 'magic-dot-files/TagHighlight' "tag highlight plugin
 NeoBundle 'altercation/vim-colors-solarized' "colorscheme
 NeoBundle 'tomasr/molokai' "colorscheme
+NeoBundle 'rking/ag.vim' "ag search
 NeoBundle 'scrooloose/syntastic' "syntax checking plugin
 NeoBundle 'godlygeek/tabular' "align text
 NeoBundle 'tpope/vim-endwise' "complete certain structures automatically
@@ -94,7 +101,16 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle "mattn/emmet-vim"
 NeoBundle 'maksimr/vim-jsbeautify'
 NeoBundle 'einars/js-beautify'
-NeoBundle 'ctrlsf.vim'
+"NeoBundle 'ctrlsf.vim'
+NeoBundle 'hail2u/vim-css3-syntax' " CSS syntax
+NeoBundle 'othree/html5.vim' " HTML5 syntax
+NeoBundle 'pangloss/vim-javascript' " js syntax
+"NeoBundle 'jistr/vim-nerdtree-tabs'
+
+"pho bundles
+"NeoBundle 'StanAngeloff/php.vim'
+"NeoBundle 'joonty/vdebug'
+"NeoBundle 'shawncplus/phpcomplete.vim'
 
 " some plugins only use in gui
 if has("gui_running")
@@ -158,6 +174,9 @@ syntax enable
 syntax on
 set cursorline " highlight current line
 set t_Co=256
+" fix chinese ime bug in mac
+"set noimd
+set imsearch=0
 
 "tab mappings
 "map <C-1> 1gt
@@ -262,8 +281,8 @@ au BufWinEnter *.ztx silent loadview
 au BufNewFile,BufRead *.tx1 setf tx1
 
 "==== F3 NERDTree 切换
-"map <F3> :NERDTreeToggle<CR>
-"imap <F3> <ESC>:NERDTreeToggle<CR>
+map <F10> :NERDTreeToggle<CR>
+imap <F10> <ESC>:NERDTreeToggle<CR>
 
 "编码
 set encoding=utf-8
@@ -361,7 +380,7 @@ set grepprg=grep\ -nH\ $*
 
 "ctags
 set autochdir
-set tags=tags,./tags
+set tags=./tags,tags;
 
 "taglist
 let Tlist_Show_One_File = 1 " Displaying tags for only one file~
@@ -469,7 +488,7 @@ au BufRead,BufNewFile *.log setlocal ft=txt
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_at_startup = 0
 " Disable auto complete
 let g:neocomplete#disable_auto_complete = 1
 " Use smartcase.
@@ -493,32 +512,32 @@ endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
 " Plugin key-mappings.
-inoremap <expr><C-g> neocomplete#undo_completion()
-inoremap <expr><C-l> neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#close_popup() . "\<CR>"
-" For no inserting <CR> key.
-"return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
-        \ neocomplete#start_manual_complete()
-function! s:check_back_space() "{{{
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1] =~ '\s'
-endfunction"}}}
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y> neocomplete#close_popup()
-inoremap <expr><C-e> neocomplete#cancel_popup()
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+"inoremap <expr><C-g> neocomplete#undo_completion()
+"inoremap <expr><C-l> neocomplete#complete_common_string()
+"
+"" Recommended key-mappings.
+"" <CR>: close popup and save indent.
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"function! s:my_cr_function()
+"  return neocomplete#close_popup() . "\<CR>"
+"" For no inserting <CR> key.
+""return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+"endfunction
+"" <TAB>: completion.
+"inoremap <expr><TAB> pumvisible() ? "\<C-n>" :
+"        \ <SID>check_back_space() ? "\<TAB>" :
+"        \ neocomplete#start_manual_complete()
+"function! s:check_back_space() "{{{
+"    let col = col('.') - 1
+"    return !col || getline('.')[col - 1] =~ '\s'
+"endfunction "}}}
+"" <C-h>, <BS>: close popup and delete backword char.
+"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-y> neocomplete#close_popup()
+"inoremap <expr><C-e> neocomplete#cancel_popup()
+"" Close popup by <Space>.
+""inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
 " For cursor moving in insert mode(Not recommended)
 "inoremap <expr><Left> neocomplete#close_popup() . "\<Left>"
@@ -596,8 +615,8 @@ let g:Powerline_mode_cs = 'S·BLOCK'
 set laststatus=2
 let g:airline_theme = 'molokai'
 let g:airline_enable_branch = 1
-let g:airline_enable_syntastic = 0
-let g:airline_powerline_fonts = 0
+let g:airline_enable_syntastic = 1
+let g:airline_powerline_fonts = 1
 " vim-powerline like symbols
 let g:airline_left_sep = '»'
 let g:airline_left_sep = ''
@@ -609,6 +628,7 @@ let g:airline_linecolumn_prefix = 'LN'
 "let g:airline_mode_map = {
 "\ '__' : '',
 "\ }
+"let g:airline#extensions#tabline#enabled = 1
 let g:airline_exclude_filenames = ['-MiniBufExplorer-','__Tagbar__']
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#default#layout = [
@@ -696,9 +716,9 @@ nnoremap <Space>F :execute 'CtrlPFunky '.expand('<cword>')<Cr>
 let g:vimfiler_as_default_explorer = 1
 
 " syntastic
-let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'active_filetypes': ['python', 'ruby', 'php'],
-                           \ 'passive_filetypes': ['cpp'] }
+"let g:syntastic_mode_map = { 'mode': 'active',
+                           "\ 'active_filetypes': ['python', 'ruby', 'php'],
+                           "\ 'passive_filetypes': ['cpp'] }
 
 " indent guides
 let g:indent_guides_enable_on_vim_startup = 1
@@ -755,3 +775,38 @@ if (has("mac"))
       \ ],
     \ }
 endif
+
+" PHP.vim
+"let g:php_syntax_extensions_enabled = 1
+"let b:php_syntax_extensions_enabled = 1
+
+"function! PhpSyntaxOverride()
+  "hi! def link phpDocTags  phpDefine
+  "hi! def link phpDocParam phpType
+"endfunction
+
+"augroup phpSyntaxOverride
+  "autocmd!
+  "autocmd FileType php call PhpSyntaxOverride()
+"augroup END
+
+"vdebug
+let g:vdebug_options= {
+    \    "port" : 9001,
+    \    "server" : 'localhost',
+    \    "timeout" : 20,
+    \    "on_close" : 'detach',
+    \    "break_on_open" : 1,
+    \    "ide_key" : 'php-xdebug',
+    \    "path_maps" : {},
+    \    "debug_window_level" : 0,
+    \    "debug_file_level" : 0,
+    \    "debug_file" : "",
+    \    "watch_window_style" : 'expanded',
+    \    "marker_default" : '⬦',
+    \    "marker_closed_tree" : '▸',
+    \    "marker_open_tree" : '▾'
+    \}
+
+"ultisnips
+let g:UltiSnipsEditSplit="vertical"

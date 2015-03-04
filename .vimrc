@@ -27,7 +27,7 @@ endif
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" Recommended to install
+" Recommended to instal
 " After install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
 NeoBundle 'Shougo/vimproc'
 
@@ -137,7 +137,7 @@ endif
 set undodir=$HOME/.vimundo
 set undofile
 
-"set nocompatible
+"set nocompatibl
 set nu
 set magic
 set ru "标尺信息
@@ -379,7 +379,7 @@ let g:tex_flavor='latex'
 set grepprg=grep\ -nH\ $*
 
 "ctags
-set autochdir
+"set autochdir
 set tags=./tags,tags;
 
 "taglist
@@ -597,34 +597,44 @@ nmap <silent> <A-Left> :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
 
 " powerline
-set laststatus=2
-set t_Co=256
-"let g:Powerline_symbols = 'unicode'
-let g:Powerline_dividers_override = ['', '>', '', '<']
-let g:Powerline_symbols_override = {
-    \ 'BRANCH': '⭠',
-    \ 'LINE': '⭡',
-    \ 'RO' : '⭤',
-    \ }
-let g:Powerline_mode_V = 'V·LINE'
-let g:Powerline_mode_cv = 'V·BLOCK'
-let g:Powerline_mode_S = 'S·LINE'
-let g:Powerline_mode_cs = 'S·BLOCK'
+"set laststatus=2
+"set t_Co=256
+""let g:Powerline_symbols = 'unicode'
+"let g:Powerline_dividers_override = ['', '>', '', '<']
+"let g:Powerline_symbols_override = {
+    "\ 'BRANCH': '⭠',
+    "\ 'LINE': '⭡',
+    "\ 'RO' : '⭤',
+    "\ }
+"let g:Powerline_mode_V = 'V·LINE'
+"let g:Powerline_mode_cv = 'V·BLOCK'
+"let g:Powerline_mode_S = 'S·LINE'
+"let g:Powerline_mode_cs = 'S·BLOCK'
 
 "" vim-airline
 set laststatus=2
 let g:airline_theme = 'molokai'
 let g:airline_enable_branch = 1
 let g:airline_enable_syntastic = 1
-let g:airline_powerline_fonts = 1
+"let g:airline_powerline_fonts = 1
 " vim-powerline like symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = ''
-let g:airline_right_sep = '«'
-let g:airline_right_sep = ''
+"let g:airline_left_sep = '>'
+"let g:airline_right_sep = '<'
 let g:airline_branch_prefix = 'B'
 let g:airline_readonly_symbol = 'R'
 let g:airline_linecolumn_prefix = 'LN'
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+"let g:airline_symbols.linenr = '␊'
+"let g:airline_symbols.linenr = '␤'
+"let g:airline_symbols.linenr = '¶'
+"let g:airline_symbols.branch = '⎇'
+"let g:airline_symbols.paste = 'ρ'
+"let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.paste = '∥'
+"let g:airline_symbols.whitespace = 'Ξ'
 "let g:airline_mode_map = {
 "\ '__' : '',
 "\ }
@@ -810,3 +820,7 @@ let g:vdebug_options= {
 
 "ultisnips
 let g:UltiSnipsEditSplit="vertical"
+
+"YouCompleteMe
+let g:ycm_global_ycm_extra_conf=$CONFIG_DIR.'/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
+let g:ycm_seed_identifiers_with_syntax=1

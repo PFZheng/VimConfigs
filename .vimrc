@@ -684,13 +684,12 @@ nmap <silent> <F4> :call QFixToggle(0)<CR>
 " 连续的进行visual模式移动
 
 "NERDCommenter
-vmap <c-b> <plug>NERDCommenterNested
-nmap <c-b> <plug>NERDCommenterNested
-imap <c-b> <ESC><c-b>i
-imap <c-u> <plug>NERDCommenterUncomment
-vmap <c-u> <plug>NERDCommenterUncomment
-nmap <c-u> <plug>NERDCommenterUncomment
-imap <c-u> <ESC><c-u>i
+vmap <leader>b <plug>NERDCommenterNested
+nmap <leader>b <plug>NERDCommenterNested
+"imap <c-b> <ESC><c-b>i
+vmap <leader>u <plug>NERDCommenterUncomment
+nmap <leader>u <plug>NERDCommenterUncomment
+"imap <c-u> <ESC><c-u>i
 
 " CtrlP
 " let g:ctrlp_map = '<c-p>'
@@ -698,12 +697,14 @@ imap <c-u> <ESC><c-u>i
 " searching by filename, use <c-d> to switch between filename and full path
 " let g:ctrlp_by_filename = 1
 " user defined root markers
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:100'
 let g:ctrlp_root_markers = ['.ctrlp']
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_regexp = 1
 " follow symbol links
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_extensions = ['funky','cmdline','menu']
+let g:ctrlp_max_files = 100000
 " keymap
 nnoremap <Space>p :CtrlP<Cr>
 nnoremap <Space>] :CtrlPTag<Cr>
@@ -824,3 +825,8 @@ let g:UltiSnipsEditSplit="vertical"
 "YouCompleteMe
 let g:ycm_global_ycm_extra_conf=$CONFIG_DIR.'/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
 let g:ycm_seed_identifiers_with_syntax=1
+
+" Visual-Mark
+map <unique> <F5> <Plug>Vm_goto_next_sign
+
+map <unique> <s-F5> <Plug>Vm_goto_prev_sign

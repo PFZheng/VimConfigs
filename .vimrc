@@ -12,18 +12,16 @@ if has ("win32")
     if has('vim_starting')
         set runtimepath+=$HOME/vimfiles/bundle/neobundle.vim/
     endif
-    call neobundle#rc(expand('$HOME/vimfiles/bundle/'))
+    call neobundle#begin(expand('$HOME/vimfiles/bundle/'))
     let $CONFIG_DIR=$HOME.'/vimfiles/'
 else
     if has('vim_starting')
         set runtimepath+=$HOME/.vim/bundle/neobundle.vim/
     endif
-    call neobundle#rc(expand('$HOME/.vim/bundle/'))
+    call neobundle#begin(expand('$HOME/.vim/bundle/'))
     let $CONFIG_DIR=$HOME.'/.vim/'
 endif
 
-" let bundle manage bundle
-" required!
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 
@@ -107,7 +105,7 @@ NeoBundle 'othree/html5.vim' " HTML5 syntax
 NeoBundle 'pangloss/vim-javascript' " js syntax
 "NeoBundle 'jistr/vim-nerdtree-tabs'
 
-"pho bundles
+"php bundles
 "NeoBundle 'StanAngeloff/php.vim'
 "NeoBundle 'joonty/vdebug'
 "NeoBundle 'shawncplus/phpcomplete.vim'
@@ -123,6 +121,8 @@ if has("mac")
     NeoBundle 'msanders/cocoa.vim'
     NeoBundle 'rizzatti/dash.vim'
 endif
+
+call neobundle#end()
 
 filetype plugin indent on " required!
 
@@ -141,7 +141,7 @@ set undofile
 set nu
 set magic
 set ru "标尺信息
-"set cc=81 "vim 7.3新功能，高亮列
+set cc=81 "vim 7.3新功能，高亮列
 set et " expandtab，用空格代替Tab键
 set showcmd
 set ai
@@ -177,30 +177,6 @@ set t_Co=256
 " fix chinese ime bug in mac
 "set noimd
 set imsearch=0
-
-"tab mappings
-"map <C-1> 1gt
-"map <C-2> 2gt
-"map <C-3> 3gt
-"map <C-4> 4gt
-"map <C-5> 5gt
-"map <C-6> 6gt
-"map <C-7> 7gt
-"map <C-8> 8gt
-"map <C-9> 9gt
-"map <C-t> :tabnew<CR>
-"map <C-w> :tabclose<CR>
-"map! <C-1> <esc>1gt
-"map! <C-2> <esc>2gt
-"map! <C-3> <esc>3gt
-"map! <C-4> <esc>4gt
-"map! <C-5> <esc>5gt
-"map! <c-6> <esc>6gt
-"map! <C-7> <esc>7gt
-"map! <C-8> <esc>8gt
-"map! <C-9> <esc>9gt
-"map! <C-t> <esc>:tabnew<CR>
-"map! <C-w> <esc>:tabclose<CR>
 
 " ui
 " set default guifont
@@ -259,8 +235,6 @@ endfunction
 
 " color scheme define
 if has("gui_running")
-" silent exec "colorscheme ex"
-" silent exec "colorscheme evening"
     silent exec "colorscheme molokai"
 " colorscheme solarized
 "set background=dark
@@ -270,21 +244,17 @@ if has("gui_running")
 "let g:solarized_custom="dark"
 "silent exec "colorscheme solarized"
 else " if we are in terminal mode
-" NOTE: you cannot use if has('mac') to detect platform in terminal mode.
+    " NOTE: you cannot use if has('mac') to detect platform in terminal mode.
     silent exec "colorscheme delek"
-" silent exec "colorscheme darkblue"
+    " silent exec "colorscheme darkblue"
 endif
 
-"2006-09-13 如下：保存视图
+" save views
 au BufWinLeave *.ztx mkview
 au BufWinEnter *.ztx silent loadview
 au BufNewFile,BufRead *.tx1 setf tx1
 
-"==== F3 NERDTree 切换
-map <F10> :NERDTreeToggle<CR>
-imap <F10> <ESC>:NERDTreeToggle<CR>
-
-"编码
+" encoding
 set encoding=utf-8
 set termencoding=utf-8
 set fileencodings=utf-8,gbk,cp936,gb18030,big5,euc-jp,euc-kr,latin1
@@ -294,7 +264,7 @@ else
     set fileencoding=utf-8
 endif
 
-"默认隐藏菜单和工具栏
+" hide menu and toolbar
 if(has("gui_running"))
 "处理菜单及右键菜单乱码
     source $VIMRUNTIME/delmenu.vim
@@ -343,7 +313,13 @@ if(has("gui_running"))
     language messages zh_CN.utf-8
 endif
 
-"用空格键来开关折叠（说明西方“"”后面的内容为注释，不会被VIM所识别）
+""-----plugin configs------
+
+" NERDTree
+map <F10> :NERDTreeToggle<CR>
+imap <F10> <ESC>:NERDTreeToggle<CR>
+
+" 用空格键来开关折叠（说明西方“"”后面的内容为注释，不会被VIM所识别）
 "set foldenable
 "set foldmethod=indent
 "nnoremap <F4> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
@@ -353,21 +329,9 @@ endif
 " REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
 "filetype plugin on
 
-
 " IMPORTANT: win32 users will need to have 'shellslash' set so that latex
 " can be called correctly.
 set shellslash
-
-
-" IMPORTANT: grep will sometimes skip displaying the file name if you
-" search in a singe file. This will confuse Latex-Suite. Set your grep
-" program to always generate a file-name.
-set grepprg=grep\ -nH\ $*
-
-
-" OPTIONAL: This enables automatic indentation as you type.
-"filetype indent on
-
 
 " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
@@ -406,23 +370,22 @@ nnoremap <unique> <silent> <F4> :WMToggle<cr>
 "au VimEnter * call feedkeys("wm")
 
 "c/h文件切换插件
-nnoremap <silent> <F12> :A<CR>
+"nnoremap <silent> <F12> :A<CR>
 
 "grep
-nnoremap <silent> <F3> :Grep<CR>
+"nnoremap <silent> <F3> :Grep<CR>
 
 "cscope
 ":set cscopequickfix=s-,c-,d-,i-,t-,e-
 
 "QuickFix
-nmap <F6> :cn<cr>
-nmap <F7> :cp<cr>
+"nmap <F6> :cn<cr>
+"nmap <F7> :cp<cr>
 
 "补齐
 set completeopt=longest,menu
 
 "cscope代码文件夹
-":cs add E:\private\Windows_via_C\cscope.out E:\private\Windows_via_C
 "if has("cscope")
 " add any database in current directory
 "set nocsverb
@@ -441,19 +404,6 @@ set completeopt=longest,menu
 "set csto=0
 "endif
 
-
-"括号自动补齐
-":inoremap ( ()<ESC>i
-":inoremap ) <c-r>=ClosePair(')')<CR>
-":inoremap { {}<ESC>i
-":inoremap } <c-r>=ClosePair('}')<CR>
-":inoremap [ []<ESC>i
-":inoremap ] <c-r>=ClosePair(']')<CR>
-":inoremap < <><ESC>i
-":inoremap > <c-r>=ClosePair('>')<CR>
-":inoremap " ""<ESC>i
-":inoremap > <c-r>=ClosePair('>')<CR>
-
 " delimitMate
 " let delimitMate_autoclose = 0
 let delimitMate_matchpairs = "(:),[:],{:},<:>"
@@ -467,21 +417,18 @@ au BufRead,BufNewFile *.txt setlocal ft=txt
 au BufRead,BufNewFile *.log setlocal ft=txt
 
 
-""""""""""""""""""""""""""""""
 " lookupfile setting
-""""""""""""""""""""""""""""""
 "let g:LookupFile_MinPatLength = 2 "最少输入2个字符才开始查找
 "let g:LookupFile_PreserveLastPattern = 0 "不保存上次查找的字符串
 "let g:LookupFile_PreservePatternHistory = 1 "保存查找历史
 "let g:LookupFile_AlwaysAcceptFirst = 1 "回车打开第一个匹配项目
 "let g:LookupFile_AllowNewFiles = 0 "不允许创建不存在的文件
-"映射LookupFile为,lk
+""映射LookupFile为,lk
 "nmap <silent> lk :LUTags<cr>
-"映射LUBufs为,ll
+""映射LUBufs为,ll
 "nmap <silent> ll :LUBufs<cr>
-"映射LUWalk为,lw
+""映射LUWalk为,lw
 "nmap <silent> lw :LUWalk<cr>
-
 
 
 " NeoComplete
@@ -503,7 +450,7 @@ let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'default' : '',
     \ 'vimshell' : $HOME.'/.vimshell_hist',
     \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
+    \ }
 
 " Define keyword.
 if !exists('g:neocomplete#keyword_patterns')
@@ -578,7 +525,7 @@ endif
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 " tagbar
-let g:tagbar_left = 1
+let g:tagbar_right = 1
 let g:tagbar_width = 35
 let g:tagbar_autoclose = 0
 let g:tagbar_autofocus = 0
@@ -620,13 +567,23 @@ let g:airline_enable_syntastic = 1
 " vim-powerline like symbols
 "let g:airline_left_sep = '>'
 "let g:airline_right_sep = '<'
-let g:airline_branch_prefix = 'B'
-let g:airline_readonly_symbol = 'R'
-let g:airline_linecolumn_prefix = 'LN'
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
+if has("mac")
+    let g:airline_branch_prefix = '¶'
+    let g:airline_readonly_symbol = 'R'
+    let g:airline_linecolumn_prefix = '␤'
+    let g:airline_left_sep = '»'
+    let g:airline_left_sep = '▶'
+    let g:airline_right_sep = '«'
+    let g:airline_right_sep = '◀'
+else
+    let g:airline_branch_prefix = 'B'
+    let g:airline_readonly_symbol = 'R'
+    let g:airline_linecolumn_prefix = 'LN'
+    let g:airline_left_sep = '|'
+    let g:airline_left_sep = '|'
+    let g:airline_right_sep = '|'
+    let g:airline_right_sep = '|'
+endif
 "let g:airline_symbols.linenr = '␊'
 "let g:airline_symbols.linenr = '␤'
 "let g:airline_symbols.linenr = '¶'
@@ -646,7 +603,7 @@ let g:airline#extensions#default#layout = [
 \ [ 'x', 'y', 'z']
 \ ]
 
-""MiniBufExplorer
+"MiniBufExplorer
 let g:miniBufExplorerMoreThanOne = 0
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplMapWindowNavVim = 1
@@ -681,8 +638,6 @@ endfunction
 " toggle for quickfix
 nmap <silent> <F4> :call QFixToggle(0)<CR>
 
-" 连续的进行visual模式移动
-
 "NERDCommenter
 vmap <leader>b <plug>NERDCommenterNested
 nmap <leader>b <plug>NERDCommenterNested
@@ -697,7 +652,7 @@ nmap <leader>u <plug>NERDCommenterUncomment
 " searching by filename, use <c-d> to switch between filename and full path
 " let g:ctrlp_by_filename = 1
 " user defined root markers
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:100'
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:15,results:100'
 let g:ctrlp_root_markers = ['.ctrlp']
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_regexp = 1
@@ -707,11 +662,12 @@ let g:ctrlp_extensions = ['funky','cmdline','menu']
 let g:ctrlp_max_files = 100000
 " keymap
 nnoremap <Space>p :CtrlP<Cr>
+nnoremap <Space>e :CtrlPBuffer<Cr>
 nnoremap <Space>] :CtrlPTag<Cr>
-nnoremap <Space>t :CtrlPBufTag<Cr>
-nnoremap <Space>T :CtrlPBufTagAll<Cr>
+nnoremap <Space>t :CtrlPBufTagAll<Cr>
+nnoremap <Space>T :CtrlPBufTag<Cr>
 nnoremap <Space>q :CtrlPQuickfix<Cr>
-nnoremap <Space>d :CtrlPDir
+nnoremap <Space>d :CtrlPDir<Cr>
 nnoremap <Space>r :CtrlPRTS<Cr>
 nnoremap <Space>u :CtrlPUndo<Cr>
 nnoremap <Space>l :CtrlPLine<Cr>
@@ -719,7 +675,7 @@ nnoremap <Space>c :CtrlPChange<Cr>
 nnoremap <Space>C :CtrlPChangeAll<Cr>
 nnoremap <Space>m :CtrlPMixed<Cr>
 nnoremap <Space>b :CtrlPBookmarkDir<Cr>
-nnoremap <Space>B :CtrlPBookmarkDirAdd
+nnoremap <Space>B :CtrlPBookmarkDirAdd<Cr>
 nnoremap <Space>f :CtrlPFunky<Cr>
 nnoremap <Space>F :execute 'CtrlPFunky '.expand('<cword>')<Cr>
 
@@ -828,5 +784,10 @@ let g:ycm_seed_identifiers_with_syntax=1
 
 " Visual-Mark
 map <unique> <F5> <Plug>Vm_goto_next_sign
-
 map <unique> <s-F5> <Plug>Vm_goto_prev_sign
+
+" virsual arrow map
+vmap <UP> k
+vmap <LEFT> h
+vmap <RIGHT> l
+vmap <DOWN> j

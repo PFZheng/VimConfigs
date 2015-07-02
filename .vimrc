@@ -38,6 +38,7 @@ NeoBundle 'c.vim'
 "NeoBundle 'comments.vim'
 NeoBundle 'genutils'
 NeoBundle 'grep.vim'
+NeoBundle 'mileszs/ack.vim'
 "NeoBundle 'lookupfile'
 "NeoBundle 'SuperTab'
 NeoBundle 'DrawIt'
@@ -314,6 +315,12 @@ if(has("gui_running"))
 endif
 
 ""-----plugin configs------
+
+" ack.vim
+if executable('ag')
+  let g:ackprg = 'ag '
+else
+endif
 
 " NERDTree
 map <F10> :NERDTreeToggle<CR>
@@ -653,7 +660,8 @@ nmap <leader>u <plug>NERDCommenterUncomment
 " let g:ctrlp_by_filename = 1
 " user defined root markers
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:15,results:100'
-let g:ctrlp_root_markers = ['.ctrlp']
+let g:ctrlp_root_markers = ['.ctrlp', '.git', '.svn', '.hg', '.bzr',
+    \ '_darcs', '_svn', 'README']
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_regexp = 1
 " follow symbol links
@@ -781,6 +789,7 @@ let g:UltiSnipsEditSplit="vertical"
 "YouCompleteMe
 let g:ycm_global_ycm_extra_conf=$CONFIG_DIR.'/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
 let g:ycm_seed_identifiers_with_syntax=1
+let g:ycm_complete_in_comments = 0
 
 " Visual-Mark
 map <unique> <F5> <Plug>Vm_goto_next_sign

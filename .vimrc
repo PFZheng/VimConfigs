@@ -112,11 +112,11 @@ NeoBundle 'pangloss/vim-javascript' " js syntax
 "NeoBundle 'shawncplus/phpcomplete.vim'
 
 " some plugins only use in gui
-if has("gui_running")
+"if has("gui_running")
     NeoBundle 'minibufexpl.vim'
     "NeoBundle 'Lokaltog/vim-powerline'
     NeoBundle 'bling/vim-airline'
-endif
+"endif
 
 if has("mac")
     NeoBundle 'msanders/cocoa.vim'
@@ -235,7 +235,7 @@ function s:SetGuiFont()
 endfunction
 
 " color scheme define
-if has("gui_running")
+"if has("gui_running")
     silent exec "colorscheme molokai"
 " colorscheme solarized
 "set background=dark
@@ -244,11 +244,11 @@ if has("gui_running")
 "let g:solarized_visibility="high"
 "let g:solarized_custom="dark"
 "silent exec "colorscheme solarized"
-else " if we are in terminal mode
+"else " if we are in terminal mode
     " NOTE: you cannot use if has('mac') to detect platform in terminal mode.
-    silent exec "colorscheme delek"
+    " silent exec "colorscheme delek"
     " silent exec "colorscheme darkblue"
-endif
+"endif
 
 " save views
 au BufWinLeave *.ztx mkview
@@ -550,6 +550,12 @@ nmap <silent> <A-Down> :wincmd j<CR>
 nmap <silent> <A-Left> :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
 
+" move between windows with wh, wj, wk, wl
+nmap wk :wincmd k<CR>
+nmap wj :wincmd j<CR>
+nmap wh :wincmd h<CR>
+nmap wl :wincmd l<CR>
+
 " powerline
 "set laststatus=2
 "set t_Co=256
@@ -660,8 +666,9 @@ nmap <leader>u <plug>NERDCommenterUncomment
 " let g:ctrlp_by_filename = 1
 " user defined root markers
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:15,results:100'
-let g:ctrlp_root_markers = ['.ctrlp', '.git', '.svn', '.hg', '.bzr',
-    \ '_darcs', '_svn', 'README']
+let g:ctrlp_root_markers = ['.ctrlp','COMAKE']
+"let g:ctrlp_root_markers = ['.ctrlp','COMAKE', '.git', '.svn', '.hg', '.bzr',
+    "\ '_darcs', '_svn', 'README']
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_regexp = 1
 " follow symbol links
@@ -796,7 +803,7 @@ map <unique> <F5> <Plug>Vm_goto_next_sign
 map <unique> <s-F5> <Plug>Vm_goto_prev_sign
 
 " virsual arrow map
-vmap <UP> k
-vmap <LEFT> h
-vmap <RIGHT> l
-vmap <DOWN> j
+"vmap <UP> k
+"vmap <LEFT> h
+"vmap <RIGHT> l
+"vmap <DOWN> j

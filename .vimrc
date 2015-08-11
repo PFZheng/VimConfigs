@@ -668,7 +668,7 @@ nmap <leader>u <plug>NERDCommenterUncomment
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:15,results:100'
 " let g:ctrlp_root_markers = ['.ctrlp', '.git', '.svn', '.hg', '.bzr',
 "    \ '_darcs', '_svn', 'README']
-let g:ctrlp_root_markers = ['.ctrlp’, ‘BCLOUD’]
+let g:ctrlp_root_markers = ['.ctrlp']
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_regexp = 1
 " follow symbol links

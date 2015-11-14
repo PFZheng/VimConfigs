@@ -235,20 +235,18 @@ function s:SetGuiFont()
 endfunction
 
 " color scheme define
-"if has("gui_running")
-    silent exec "colorscheme molokai"
-" colorscheme solarized
-"set background=dark
-"let g:solarized_termcolors=256
-"let g:solarized_contrast="high"
-"let g:solarized_visibility="high"
-"let g:solarized_custom="dark"
-"silent exec "colorscheme solarized"
-"else " if we are in terminal mode
-    " NOTE: you cannot use if has('mac') to detect platform in terminal mode.
-    " silent exec "colorscheme delek"
-    " silent exec "colorscheme darkblue"
-"endif
+" let g:colorscheme_name = "molokai"
+let g:colorscheme_name = "solarized"
+let theme_bg = "light"
+" let theme_bg = "dark"
+if g:colorscheme_name == "solarized"
+    let g:airline_theme = 'solarized'
+else
+    let g:airline_theme = 'molokai'
+    let theme_bg = "dark"
+endif
+exec "colorscheme ".g:colorscheme_name
+exec "set background=".theme_bg
 
 " save views
 au BufWinLeave *.ztx mkview
@@ -573,7 +571,7 @@ nmap wl :wincmd l<CR>
 
 "" vim-airline
 set laststatus=2
-let g:airline_theme = 'molokai'
+"let g:airline_theme = 'solarized'
 let g:airline_enable_branch = 1
 let g:airline_enable_syntastic = 1
 "let g:airline_powerline_fonts = 1

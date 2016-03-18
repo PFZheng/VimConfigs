@@ -89,6 +89,7 @@ NeoBundle 'acx0/Conque-Shell' " shell
 NeoBundle 'Lokaltog/vim-easymotion' " search and jump
 NeoBundle 'skydark/fcitx.vim' " linux fcitx
 NeoBundle 'PFZheng/Visual-Mark' " fix for Linux Chinese
+NeoBundle 'PFZheng/vim-colorscheme'
 NeoBundle 'Shougo/vimfiler' " file explorer
 NeoBundle 'nathanaelkane/vim-indent-guides' " indent guide
 NeoBundle 'sjl/gundo.vim' " gundo
@@ -105,6 +106,7 @@ NeoBundle 'hail2u/vim-css3-syntax' " CSS syntax
 NeoBundle 'othree/html5.vim' " HTML5 syntax
 NeoBundle 'pangloss/vim-javascript' " js syntax
 "NeoBundle 'jistr/vim-nerdtree-tabs'
+NeoBundle 'tpope/vim-markdown'
 
 "php bundles
 "NeoBundle 'StanAngeloff/php.vim'
@@ -235,18 +237,21 @@ function s:SetGuiFont()
 endfunction
 
 " color scheme define
-" let g:colorscheme_name = "molokai"
-let g:colorscheme_name = "solarized"
-let theme_bg = "light"
-" let theme_bg = "dark"
-if g:colorscheme_name == "solarized"
-    let g:airline_theme = 'solarized'
-else
-    let g:airline_theme = 'molokai'
-    let theme_bg = "dark"
-endif
+"" let g:colorscheme_name = "molokai"
+"let g:colorscheme_name = "solarized"
+"let theme_bg = "light"
+"" let theme_bg = "dark"
+"if g:colorscheme_name == "solarized"
+    "let g:airline_theme = 'solarized'
+"else
+    "let g:airline_theme = 'molokai'
+    "let theme_bg = "dark"
+"endif
+let g:airline_theme = 'bubblegum'
+let g:colorscheme_name = "Tomorrow-Night"
 exec "colorscheme ".g:colorscheme_name
-exec "set background=".theme_bg
+"exec "set background=".theme_bg
+
 
 " save views
 au BufWinLeave *.ztx mkview
@@ -799,6 +804,9 @@ let g:ycm_complete_in_comments = 0
 " Visual-Mark
 map <unique> <F5> <Plug>Vm_goto_next_sign
 map <unique> <s-F5> <Plug>Vm_goto_prev_sign
+
+" markdown
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " virsual arrow map
 "vmap <UP> k

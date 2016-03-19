@@ -66,7 +66,14 @@ NeoBundle 'Shougo/vimshell.vim'
 "complete plugins
 "NeoBundle 'Shougo/neocomplete.vim'
 "NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'Valloric/YouCompleteMe' {
+    \ 'build'      : {
+       \ 'mac'     : './install.py',
+       \ 'unix'    : './install.py',
+       \ 'windows' : 'install.py',
+       \ 'cygwin'  : './install.py'
+       \ }
+    \ }
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 
@@ -800,6 +807,7 @@ let g:UltiSnipsEditSplit="vertical"
 let g:ycm_global_ycm_extra_conf=$CONFIG_DIR.'/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
 let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_complete_in_comments = 0
+let g:ycm_show_diagnostics_ui = 0
 
 " Visual-Mark
 map <unique> <F5> <Plug>Vm_goto_next_sign

@@ -66,7 +66,7 @@ NeoBundle 'Shougo/vimshell.vim'
 "complete plugins
 "NeoBundle 'Shougo/neocomplete.vim'
 "NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Valloric/YouCompleteMe' {
+NeoBundle 'Valloric/YouCompleteMe', {
     \ 'build'      : {
        \ 'mac'     : './install.py',
        \ 'unix'    : './install.py',

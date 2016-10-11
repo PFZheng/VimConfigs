@@ -708,9 +708,9 @@ nnoremap <Space>F :execute 'CtrlPFunky '.expand('<cword>')<Cr>
 let g:vimfiler_as_default_explorer = 1
 
 " syntastic
-"let g:syntastic_mode_map = { 'mode': 'active',
-                           "\ 'active_filetypes': ['python', 'ruby', 'php'],
-                           "\ 'passive_filetypes': ['cpp'] }
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'active_filetypes': ['python', 'ruby', 'php'],
+                           \ 'passive_filetypes': ['cpp'] }
 
 " indent guides
 let g:indent_guides_enable_on_vim_startup = 1
@@ -725,7 +725,7 @@ let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar']
 let g:LargeFile = 30
 
 " gundo
-nnoremap <F6> :GundoToggle<CR>
+"nnoremap <F6> :GundoToggle<CR>
 "let g:gundo_width = 60
 "let g:gundo_preview_height = 40
 let g:gundo_right = 1
@@ -810,8 +810,8 @@ let g:ycm_complete_in_comments = 0
 let g:ycm_show_diagnostics_ui = 0
 
 " Visual-Mark
-map <unique> <F5> <Plug>Vm_goto_next_sign
-map <unique> <s-F5> <Plug>Vm_goto_prev_sign
+map <unique> <F6> <Plug>Vm_goto_next_sign
+map <unique> <S-F6> <Plug>Vm_goto_prev_sign
 
 " markdown
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown

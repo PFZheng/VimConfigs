@@ -62,6 +62,7 @@ NeoBundle 'mbbill/echofunc'
 NeoBundle 'adah1972/tellenc'
 "NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'plasticboy/vim-markdown'
 
 "complete plugins
 "NeoBundle 'Shougo/neocomplete.vim'
@@ -708,9 +709,9 @@ nnoremap <Space>F :execute 'CtrlPFunky '.expand('<cword>')<Cr>
 let g:vimfiler_as_default_explorer = 1
 
 " syntastic
-"let g:syntastic_mode_map = { 'mode': 'active',
-                           "\ 'active_filetypes': ['python', 'ruby', 'php'],
-                           "\ 'passive_filetypes': ['cpp'] }
+let g:syntastic_mode_map = { 'mode': 'passive',
+                           \ 'active_filetypes': ['python', 'ruby', 'php'],
+                           \ 'passive_filetypes': ['cpp', 'java'] }
 
 " indent guides
 let g:indent_guides_enable_on_vim_startup = 1

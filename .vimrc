@@ -20,6 +20,7 @@ else
     endif
     call neobundle#begin(expand('$HOME/.vim/bundle/'))
     let $CONFIG_DIR=$HOME.'/.vim/'
+    set mouse-=a
 endif
 
 " Let NeoBundle manage NeoBundle
@@ -291,7 +292,7 @@ if(has("gui_running"))
 "处理菜单及右键菜单乱码
     source $VIMRUNTIME/delmenu.vim
     source $VIMRUNTIME/menu.vim
-"source $VIMRUNTIME/mswin.vim
+    source $VIMRUNTIME/mswin.vim
     set guioptions-=m
     set guioptions-=T
     map <silent> <F9> :if &go=~#'m'<Bar>set go-=m<Bar>set go-=T<Bar>else<Bar>set go+=m<Bar>set go+=T<Bar>endif<CR>
@@ -337,9 +338,11 @@ endif
 
 ""-----plugin configs------
 
-" ack.vim
+" ag.vim
 if executable('ag')
-  let g:ackprg = 'ag '
+  let g:ag_prg = 'ag --vimgrep --smart-case -t'
+  let g:ag_working_path_mode='r'
+    let g:ag_highlight=1
 else
 endif
 
@@ -657,8 +660,8 @@ let g:miniBufExplMapWindowNavArrows = 1
 " open vimgrep, search in current file, and store in quickfix windows
 map ,r :vimgrep /\<<c-r><c-w>\>/j
 map ,R "ay:vimgrep /\<<c-r>a\>/j
-let Grep_Skip_Files = '*.bak *.swp tags' 
- 
+let Grep_Skip_Files = '*.bak *.swp tags'
+
 function! QFixToggle(force)
     if exists("g:qfix_win")
         cclose

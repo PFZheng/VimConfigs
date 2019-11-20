@@ -35,6 +35,7 @@ NeoBundle 'a.vim'
 "NeoBundle 'BlockComment.vim'
 NeoBundle 'bufexplorer.zip'
 NeoBundle 'c.vim'
+NeoBundle "octol/vim-cpp-enhanced-highlight"
 "NeoBundle 'comments.vim'
 NeoBundle 'genutils'
 NeoBundle 'grep.vim'
@@ -55,6 +56,7 @@ NeoBundle 'LargeFile'
 NeoBundle 'highlight.vim'
 "NeoBundle 'QFixToggle' " jump visiable window for quickfix
 NeoBundle 'cmdline-completion' " command auto-complete use c-p and c-n
+NeoBundle 'morhetz/gruvbox'
 
 NeoBundle 'brookhong/cscope.vim'
 NeoBundle 'kien/ctrlp.vim'
@@ -63,6 +65,9 @@ NeoBundle 'adah1972/tellenc'
 "NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'octol/vim-cpp-enhanced-highlight'
+NeoBundle 'ntpeters/vim-better-whitespace'
+NeoBundle 't9md/vim-quickhl'
 
 "complete plugins
 "NeoBundle 'Shougo/neocomplete.vim'
@@ -99,7 +104,8 @@ NeoBundle 'skydark/fcitx.vim' " linux fcitx
 NeoBundle 'PFZheng/Visual-Mark' " fix for Linux Chinese
 NeoBundle 'PFZheng/vim-colorscheme'
 NeoBundle 'Shougo/vimfiler' " file explorer
-NeoBundle 'nathanaelkane/vim-indent-guides' " indent guide
+"NeoBundle 'nathanaelkane/vim-indent-guides' " indent guide
+NeoBundle 'Yggdroot/indentLine' " indent guide
 NeoBundle 'sjl/gundo.vim' " gundo
 NeoBundle 'michalliu/jsruntime.vim' " js runtime
 NeoBundle 'michalliu/jsoncodecs.vim' " json
@@ -115,6 +121,7 @@ NeoBundle 'othree/html5.vim' " HTML5 syntax
 NeoBundle 'pangloss/vim-javascript' " js syntax
 "NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'tpope/vim-markdown'
+NeoBundle 'kshenoy/vim-signature'
 
 "php bundles
 "NeoBundle 'StanAngeloff/php.vim'
@@ -255,10 +262,13 @@ endfunction
     "let g:airline_theme = 'molokai'
     "let theme_bg = "dark"
 "endif
-let g:airline_theme = 'bubblegum'
-let g:colorscheme_name = "Tomorrow-Night"
+"let g:airline_theme = 'bubblegum'
+"let g:colorscheme_name = "Tomorrow-Night"
+let g:colorscheme_name = "gruvbox"
+let g:airline_theme = 'gruvbox'
 exec "colorscheme ".g:colorscheme_name
 "exec "set background=".theme_bg
+let g:gruvbox_invert_indent_guides = 1
 
 
 " save views
@@ -822,3 +832,8 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 "vmap <LEFT> h
 "vmap <RIGHT> l
 "vmap <DOWN> j
+
+nmap <Space>m <Plug>(quickhl-manual-this)
+xmap <Space>m <Plug>(quickhl-manual-this)
+nmap <Space>M <Plug>(quickhl-manual-reset)
+xmap <Space>M <Plug>(quickhl-manual-reset)
